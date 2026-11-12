@@ -1,58 +1,111 @@
-# AI-Power-Carbon-Predictor
-An ML-powered Streamlit application for predicting AI training power consumption, interpreting model predictions using SHAP, and estimating carbon footprints across four countries.
+# AERIS — AI Energy Requirement Intelligence System
 
-# AERIS – AI Energy Requirement Intelligence System
-Predicting AI Training Power Consumption and Estimating Carbon Footprints Using Machine Learning
+AERIS is a Streamlit application for estimating the electricity requirements and
+associated carbon footprint of AI model training workloads. It uses a trained
+Random Forest model to estimate power consumption and presents related
+energy/carbon insights.
 
-AERIS (AI Energy Requirement Intelligence System) is a machine learning-based project developed to predict the power consumption of AI training workloads and estimate their associated carbon footprints.
+## Features
 
-The project combines predictive modelling, Explainable AI (XAI), and carbon emission estimation to explore the environmental impact of computationally intensive AI workloads.
+- Predicts AI-training power consumption using a trained machine-learning model.
+- Explores energy requirements across workload and hardware configurations.
+- Estimates associated carbon emissions using electricity carbon-intensity data.
+- Presents model-related visualisations and prediction information through an
+  interactive Streamlit interface.
 
-Built using Python, Scikit-learn, SHAP, and Streamlit, AERIS provides an interactive platform for analysing energy consumption patterns and understanding the environmental implications of AI training.
+## Tech Stack
 
-## Project Overview
+- Python
+- Streamlit
+- Pandas and NumPy
+- Scikit-learn and Joblib
+- Plotly
 
-With the rapid growth of artificial intelligence, the computational resources required to train AI models are increasing, raising concerns about electricity consumption and carbon emissions.
+## Project Structure
 
-AERIS explores this challenge by applying machine learning techniques to predict AI training power consumption and estimate its environmental impact.
+```text
+AI-Power-Carbon-Predictor/
+├── app.py
+├── ai_power_random_forest_model.pkl
+├── electricity_carbon_intensity_2024.csv
+├── conformal_prediction_params.csv
+├── requirements.txt
+└── assets/
+    ├── actual_vs_predicted.png
+    ├── model_comparison.png
+    ├── power_by_hardware.png
+    ├── power_by_workload.png
+    ├── power_distribution.png
+    ├── residual_plot.png
+    └── shap_importance.png
+```
 
-The project uses a dataset containing **6,480 observations** to develop predictive models and incorporates explainability techniques to interpret model behaviour.
+## Run Locally
 
-## Key Features
+### 1. Clone the repository
 
-- **Power Consumption Prediction:** Uses a trained Random Forest model to predict AI training power consumption.
-- **Explainable AI:** Applies SHAP (SHapley Additive exPlanations) to interpret model predictions and understand feature contributions.
-- **Carbon Footprint Estimation:** Estimates associated carbon emissions using electricity carbon-intensity data.
-- **Multi-Country Analysis:** Explores carbon footprint variations across four countries.
-- **Interactive Dashboard:** Provides a Streamlit-based interface for exploring predictions and analytical insights.
-- **Data Visualisation:** Presents model performance, power consumption patterns, feature importance, and residual analysis.
+```bash
+git clone https://github.com/YOUR-USERNAME/ai-power-carbon-predictor.git
+cd ai-power-carbon-predictor
+```
 
-## Project Highlights
+### 2. Create and activate a virtual environment
 
-- Analysed 6,480 observations related to AI training power consumption.
-- Developed a Random Forest-based predictive model.
-- Applied SHAP to interpret model predictions and identify important features.
-- Estimated carbon footprints across four countries.
-- Developed an interactive Streamlit application to present predictions and analytical findings.
+**Windows (PowerShell):**
 
-## Environmental Impact
-AERIS explores the relationship between AI computational requirements, electricity consumption, and carbon emissions.
-By combining power consumption predictions with country-specific electricity carbon-intensity information, the project provides insights into how the environmental impact of AI training can vary across different energy systems.
-The project aims to encourage awareness of energy-efficient and environmentally responsible AI development.
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
 
-## Research Significance
+**macOS / Linux:**
 
-This project demonstrates the application of machine learning and Explainable AI techniques to an emerging research area: the environmental sustainability of artificial intelligence.
-It integrates predictive analytics, model interpretability, and environmental impact estimation into an interactive application.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-## Limitations
-The predictions and carbon footprint estimates depend on the available dataset, model assumptions, and electricity carbon-intensity values.
-The results represent estimates rather than direct measurements of actual AI training energy consumption or emissions.
+### 3. Install dependencies
 
-## Author
-**Gauravi Kajrolkar**
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
 
-Data Science | Machine Learning | Artificial Intelligence
+### 4. Launch the application
+
+```bash
+streamlit run app.py
+```
+
+Streamlit will print a local URL (usually http://localhost:8501) that you can
+open in your browser.
+
+## Deploy on Streamlit Community Cloud
+
+1. Push this repository to GitHub.
+2. Sign in to Streamlit Community Cloud.
+3. Create a new app and select this GitHub repository and branch.
+4. Set the main file path to `app.py`.
+5. Deploy. Keep the model, CSV files, and `assets/` directory in the repository
+   so the application can access them at runtime.
+
+## Notes
+
+- The model file is a serialized Python object (`.pkl`). Only load it from a
+  source you trust, and keep the Python/scikit-learn environment compatible
+  with the environment used to train it.
+- The carbon-intensity estimates depend on the values and assumptions in
+  `electricity_carbon_intensity_2024.csv` and the calculations implemented in
+  the application.
+- This repository contains the application and its required deployment
+  artefacts. Add a dataset, training notebook, or research paper only if you
+  have permission to publish them and they contain no private or restricted
+  information.
+- Update this README with the public demo URL, final dataset/source citations,
+  and any model evaluation details you have verified before publishing.
 
 ## Acknowledgement
-Developed as an academic research project exploring the relationship between artificial intelligence, energy consumption, and environmental sustainability.
+
+Developed as an academic/research project. Add contributor, institution,
+conference, and data-source acknowledgements here as appropriate.
